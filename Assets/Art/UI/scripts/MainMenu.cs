@@ -76,10 +76,8 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
-        // Tocar o som configurado no inspector.
         startGameSound.Play();
 
-        // Iniciar o processo de fade out e troca de cena.
         StartCoroutine(FadeToBlackAndLoadScene());
     }
 
@@ -88,25 +86,22 @@ public class MainMenu : MonoBehaviour
         if (panelFade == null)
             yield break;
 
-        float fadeDuration = 4f; // Duração do fade em segundos
-        Color initialColor = panelFade.color; // Cor inicial do painel (transparente)
-        Color targetColor = Color.black; // Cor final (preta)
+        float fadeDuration = 6f; 
+        Color initialColor = panelFade.color; 
+        Color targetColor = Color.black; 
 
         float timeElapsed = 0f;
 
-        // Realiza o fade para preto de forma linear.
         while (timeElapsed < fadeDuration)
         {
             timeElapsed += Time.deltaTime;
             float t = timeElapsed / fadeDuration;
             panelFade.color = Color.Lerp(initialColor, targetColor, t);
-            yield return null; // Espera um frame
+            yield return null;
         }
 
-        // Certificar-se de que a tela está completamente preta.
         panelFade.color = targetColor;
 
-        // Trocar para a cena de loading após o fade out completo.
         SceneManager.LoadScene(playActionScene);
     }
 
