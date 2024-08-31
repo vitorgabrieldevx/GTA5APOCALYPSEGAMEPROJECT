@@ -1,0 +1,4 @@
+repository "GTA-VI@vitorgabrieldev@cloud"
+  path "/"
+    br "/main"
+    co "/main"
